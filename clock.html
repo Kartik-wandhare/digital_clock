@@ -1,31 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Digital Clock</title>
-    <style>
-        body {
-            background-color: #000;
-            color:#0f0;
-            font-family: monospace;
-            font-size: 80px;
-            justify-content: flex;
-            align-items: center;
-            height: 100vh;
-        }
-    </style>
+  <title>Digital Clock</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #0f0;
+      font-family: monospace;
+      font-size: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      
+    }
+  </style>
 </head>
 <body>
-    <div id="Clock">--:--:--</div>
-    <script>
-        function updateClock() {
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            document.getElementById('Clock').textContent = `${hours}:${minutes}:${seconds}`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock(); // Initial call to display clock immediately
-    </script>
+  <div id="clock">--:--:--</div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+      const ampm = now.getHours() >= 12 ? 'PM' : 'AM';  
+      document.getElementById('clock').textContent += ` ${ampm}`;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock(); // initial call
+  </script>
 </body>
 </html>
